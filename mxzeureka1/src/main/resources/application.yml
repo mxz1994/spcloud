@@ -1,0 +1,16 @@
+server:
+  port: 8761
+  
+eureka:
+  instance:
+    hostname: localhost
+    #metadata-map: 设置名字指定调用哪个 
+  client:
+    register-with-eureka: false  #不注册自己
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      
+spring:
+  application:
+    name: eureka-server
