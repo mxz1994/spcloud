@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mxz.eureka</groupId>
-	<artifactId>eurekaclient</artifactId>
+	<artifactId>customer</artifactId>
 	<packaging>jar</packaging>
 
-	<name>eurekaclient</name>
+	<name>customer</name>
 	<description>Demo project for Spring Boot</description>
 
 
