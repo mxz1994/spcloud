@@ -2,12 +2,17 @@ package com.mxz.eurekac.provider;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.reactivex.netty.protocol.http.server.HttpServerRequest;
 
 @RestController
 public class HelloController {
@@ -29,7 +34,11 @@ public class HelloController {
 	
 	@ResponseBody
 	@GetMapping("/hello")
-	public Object hello(){
-	        return "hello2";
+	public Object hello(HttpServletRequest request){
+		 List<ServiceInstance> insList = discoveryClient.getInstances("eureka-server");
+	        for (ServiceInstance si:insList) {
+	            return si.getHost() +" ," + si.getServiceId() +"," +si.getPort() +"," +si.getUri() +"," +si.getMetadata();
+	        } 
+		return "hello222"+request.getServerPort();
 	    }
 }

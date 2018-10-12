@@ -28,6 +28,10 @@ public class HelloController {
 	
 	@GetMapping("/hello")
 	public Object hello(){
+		  List<ServiceInstance> insList = discoveryClient.getInstances("eureka-server");
+	        for (ServiceInstance si:insList) {
+	            return si.getHost() +" ," + si.getServiceId() +"," +si.getPort() +"," +si.getUri() +"," +si.getMetadata();
+	        }
 	        return "hello";
 	    }
 }
