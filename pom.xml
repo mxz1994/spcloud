@@ -89,5 +89,7 @@
     	<module>eurekaclient</module>
     	<module>eurekaclient-2</module>
     	<module>customer</module>
+    	<module>hystrix-dashboard</module>
+    	<module>service-zuul</module>
     </modules>
 </project>

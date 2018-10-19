@@ -1,0 +1,45 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost #eureka8761.com    #hostname为hosts文件中映射的地址
+    #metadata-map: 设置名字指定调用哪个 
+    instance-id: mxzeureka8761   #修改别名
+    prefer-ip-address: true   #显示IP地址
+  client:
+    register-with-eureka: false  #false表示不向注册中心注册自己
+    fetch-registry: false   #false表示自己就是注册中心，职责是维护实例，不参加检索
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  #设置eureka server的交互地址，即对外暴露的地址
+      #defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/  #其他两个服务端的地址  集群配置
+#  server:
+  #  enable-self-preservation: false #false表示关闭自我保护模式（不推荐）
+      
+spring:
+  application:
+    name: eureka-server
+    
+
+
+#spring 热部署
+  devtools:
+    restart:
+      enabled: true  #  默认即为true  可不配
+ # 指定热部署更新的目录     additional-paths:
+ # 热部署指定目录不更新    exclude: 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
