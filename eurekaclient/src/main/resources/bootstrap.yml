@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      label: master
+      uri: http://localhost:8770/  #目前发现url配置是没用的，他会主动访问8888
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config-server

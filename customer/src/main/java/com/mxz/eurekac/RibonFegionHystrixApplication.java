@@ -16,10 +16,12 @@ import com.netflix.loadbalancer.BestAvailableRule;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
 
+import brave.sampler.Sampler;
+
 @SpringBootApplication
 @EnableEurekaClient
 @EnableDiscoveryClient
-//@EnableHystrix
+@EnableHystrix
 // 指定服务采用什么规则访问
 //@RibbonClient(name = "MICROSERVICECLOUD-DEPT",configuration = MyRule.class)
 @EnableFeignClients
@@ -42,5 +44,11 @@ public class RibonFegionHystrixApplication {
 	 		return new RandomRule();
 	 		//return new BestAvailableRule();
 	 	}
+	 	
+	 	
+	 	@Bean
+		public Sampler defaultSampler() {
+			return Sampler.ALWAYS_SAMPLE;
+		}
 
 }

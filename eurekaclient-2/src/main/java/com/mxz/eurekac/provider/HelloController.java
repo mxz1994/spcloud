@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,5 +41,15 @@ public class HelloController {
 	            return si.getHost() +" ," + si.getServiceId() +"," +si.getPort() +"," +si.getUri() +"," +si.getMetadata();
 	        } 
 		return "hello222"+request.getServerPort();
+	    }
+	
+	@ResponseBody
+	@GetMapping(value = {"/hello"}, params = "version")
+	public Object hello2(HttpServletRequest request, String version){
+		 List<ServiceInstance> insList = discoveryClient.getInstances("eureka-server");
+	        for (ServiceInstance si:insList) {
+	            return si.getHost() +" ," + si.getServiceId() +"," +si.getPort() +"," +si.getUri() +"," +si.getMetadata();
+	        } 
+		return "hello222"+request.getServerPort() + version;
 	    }
 }

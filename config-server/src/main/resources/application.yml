@@ -1,5 +1,5 @@
 server:
-  port: 8770
+  port: 8888
   
 spring:
   application:
@@ -10,11 +10,15 @@ spring:
     config:
       server:
         git:
-          uri: 
-          search-paths:
-          username: 
-          password: 
+          uri: https://github.com/mxz1994/spcloud
+          search-paths: CONFIG
       label: master #配置仓库的分支
+      
+#/{application}/{profile}[/{label}]
+#/{application}-{profile}.yml
+#/{label}/{application}-{profile}.yml
+#/{application}-{profile}.properties
+#/{label}/{application}-{profile}.properties
 
 eureka:
   client:
