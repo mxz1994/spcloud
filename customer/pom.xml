@@ -34,7 +34,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-		
 		<!-- ribbon 断路器 -->
 		<dependency>
             <groupId>org.springframework.cloud</groupId>

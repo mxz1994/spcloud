@@ -1,4 +1,4 @@
-package com.mxz.eurekac.model;
+package com.mxz.eurekac.user.model;
 
 public class User {
 	
@@ -15,6 +15,10 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", password=" + password + "]";
 	}
 	
 }

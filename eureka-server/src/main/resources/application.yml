@@ -1,24 +1,105 @@
+spring:
+  application:
+    name: eureka-server
+#  security:
+#    user:
+#      name: mxz 
+#      password: 123
+#    enable: false
+      
 server:
   port: 8761
+  tomcat:
+    #获取用户真实的IP而非代理Ip
+    remote-ip-header: X-Forwarded-For
+    protocol-header: X-Forwarded-Proto
 eureka:
   instance:
     hostname: localhost #eureka8761.com    #hostname为hosts文件中映射的地址
+    #自定义元数据
     #metadata-map: 设置名字指定调用哪个 
-    instance-id: mxzeureka8761   #修改别名
+    instance-id: mxzeureka1   #修改别名
     prefer-ip-address: true   #显示IP地址
   client:
     register-with-eureka: false  #false表示不向注册中心注册自己
     fetch-registry: false   #false表示自己就是注册中心，职责是维护实例，不参加检索
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  #设置eureka server的交互地址，即对外暴露的地址
-      #defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/  #其他两个服务端的地址  集群配置
-#  server:
-  #  enable-self-preservation: false #false表示关闭自我保护模式（不推荐）
-      
-spring:
-  application:
-    name: eureka-server
-    
+#      defaultZone: http://mxzeureka1.com:8761/eureka/,http://mxzeureka2.com:8762/eureka/  #其他两个服务端的地址  集群配置
+
+
+
+
+
+
+
+
+
+
+
+#---
+#spring:
+#  profiles:
+#    active: mxz2
+#server:
+#  port: 8762
+#eureka:
+#  instance:
+#    hostname: localhost #eureka8761.com    #hostname为hosts文件中映射的地址
+#    #metadata-map: 设置名字指定调用哪个 
+#    instance-id: mxzeureka2   #修改别名
+#    prefer-ip-address: true   #显示IP地址
+#  client:
+#    register-with-eureka: false  #false表示不向注册中心注册自己
+#    fetch-registry: false   #false表示自己就是注册中心，职责是维护实例，不参加检索
+#    service-url:
+#      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  #设置eureka server的交互地址，即对外暴露的地址
+#      defaultZone: http://mxzeureka1.com:8761/eureka/,http://mxzeureka2.com:8762/eureka/  #其他两个服务端的地址  集群配置
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #spring 热部署

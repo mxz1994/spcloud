@@ -26,3 +26,4 @@ zuul:
     api-b:
       path: /api-b/**
       serviceId: service2
+    #service2: /api-b/**也可这样配
