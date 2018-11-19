@@ -4,6 +4,18 @@ server:
 spring:
   application:
     name: service1
+  datasource:
+    url: jdbc:mysql://203.2.161.184:3306/mxz
+    username: mxz
+    password: qq741852
+    driver-class-name:  com.mysql.jdbc.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: create-drop #是否自动建库 默认为none 
+    show-sql: true
+      
+    
   
 
 eureka:
@@ -18,3 +30,4 @@ eureka:
 info:
   author: XXX
   build-version: $project.version$
+  
