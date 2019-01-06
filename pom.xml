@@ -1,131 +1,114 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <groupId>com.mxz</groupId>
-  <artifactId>spcloud</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  
-  <name>spcloud</name>
-  <description>main</description>
-  
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.3.RELEASE</version>
-  </parent>
-  
-  <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
-    </properties>
-    
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        
-	        <!-- 热部署，项目修改代码，不需要重启服务器，开发的时候推荐使用，部署到生产可以去掉-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <!-- optional=true，当project-A 依赖project-B,  project-B 依赖project-D时，
-                    则project-A不依赖project-D
-                    默认<optional>的值为false,必须依赖  -->
-            <optional>true</optional>
-        </dependency>
-        <!-- end -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    </dependencies>
+	<groupId>com.mxz</groupId>
+	<artifactId>spcloud</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+	<name>spcloud</name>
+	<description>main</description>
 
-    <build>
-        <plugins>
-         <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <delimiters>
-                     	<!--指定动态获取以$标志开头结尾的信息-->
-                        <delimit>$</delimit>
-                    </delimiters>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                <fork>true</fork>
-            	</configuration>
-            </plugin>
-	            <!-- tag::plugin[] docker-->
-				<plugin>
-					<groupId>com.spotify</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<version>0.4.13</version>
-				 <!-- 将插件绑定在package这个phase上用户执行 mvn package自动执行mvn docker:build -->
-				<!--	<executions>
-						<execution>
-							<id>build-image</id>
-							<phase>package</phase>
-							<goals>
-								<goal>build</goal>
-							</goals>
-						</execution>
-					</executions>  -->
-					<configuration>
-						<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-						<dockerDirectory>src/main/docker</dockerDirectory>
-						<resources>
-							<resource>
-								<targetPath>/</targetPath>
-								<directory>${project.build.directory}</directory>
-								<include>${project.build.finalName}.jar</include>
-							</resource>
-						</resources>
-						<!-- 
-							在maven的settings.xml中配置
-							<server>
-								<id>docker-hub</id>
-								<username></username>
-								<password></password>
-								<configuration>
-									<email></email>
-								</configuration>
-							</server>
-						 -->
-						<!-- 与maven配置文件settings.xml中配置的server.id一致 用于推送镜像   
-							mvn clean package docker:build -DpushImage
-						<serverId>docker-hub</serverId>
-						-->
-					</configuration>
-				</plugin>
-				<!-- end::plugin[] -->
-        </plugins>
-    </build>
-    
-    <modules>
-    	
-    	<module>eurekaclient</module>
-    	<module>eurekaclient-2</module>
-    	<module>customer</module>
-    	<module>hystrix-dashboard</module>
-    	<module>service-zuul</module>
-    	<module>eureka-server</module>
-    </modules>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- 热部署，项目修改代码，不需要重启服务器，开发的时候推荐使用，部署到生产可以去掉 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- optional=true，当project-A 依赖project-B, project-B 依赖project-D时， 则project-A不依赖project-D 
+				默认<optional>的值为false,必须依赖 -->
+			<optional>true</optional>
+		</dependency>
+		<!-- end -->
+
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<delimiters>
+						<!--指定动态获取以$标志开头结尾的信息 -->
+						<delimit>$</delimit>
+					</delimiters>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+			<!-- tag::plugin[] docker -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.13</version>
+				<!-- 将插件绑定在package这个phase上用户执行 mvn package自动执行mvn docker:build -->
+				<!-- <executions> <execution> <id>build-image</id> <phase>package</phase> 
+					<goals> <goal>build</goal> </goals> </execution> </executions> -->
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<!-- 在maven的settings.xml中配置 <server> <id>docker-hub</id> <username></username> 
+						<password></password> <configuration> <email></email> </configuration> </server> -->
+					<!-- 与maven配置文件settings.xml中配置的server.id一致 用于推送镜像 mvn clean package 
+						docker:build -DpushImage <serverId>docker-hub</serverId> -->
+				</configuration>
+			</plugin>
+			<!-- end::plugin[] -->
+		</plugins>
+	</build>
+
+	<modules>
+
+		<module>eurekaclient</module>
+		<module>eurekaclient-2</module>
+		<module>customer</module>
+		<module>hystrix-dashboard</module>
+		<module>service-zuul</module>
+		<module>eureka-server</module>
+		<module>config-server</module>
+		<module>elsearch</module>
+	</modules>
 </project>

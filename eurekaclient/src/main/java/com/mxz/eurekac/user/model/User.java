@@ -2,10 +2,14 @@ package com.mxz.eurekac.user.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mxz.eurekac.base.model.BaseVO;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Table(name = "user")
 public class User extends BaseVO{
 	
 	private static final long serialVersionUID = 1L;

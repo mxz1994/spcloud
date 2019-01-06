@@ -16,36 +16,15 @@ import com.mxz.eurekac.user.model.User;
 import com.mxz.eurekac.user.service.UserService;
 
 
-@RestController("/user")
-public class HelloController {
+@RestController
+@RequestMapping("/user")
+public class UserController {
 	
-	@Value("${foo}")
+	@Value("${foo:'a'}")
 	private String foo;
-	@Autowired
-	private DiscoveryClient discoveryClient;    
 	
 	@Autowired
 	private UserService userServiceImpl;
-	
-	@GetMapping("/provider/discovery")
-	public Object discovery(){
-	        List<String> list = discoveryClient.getServices();
-	        System.out.println(list);
-	        List<ServiceInstance> insList = discoveryClient.getInstances("eureka-server");
-	        for (ServiceInstance si:insList) {
-	            System.out.println(si.getHost() +"," + si.getServiceId() +"," +si.getPort() +"," +si.getUri() +"," +si.getMetadata());
-	        }
-	        return this.discoveryClient;
-	    }
-	
-	@GetMapping("/hello")
-	public Object hello(){
-		  List<ServiceInstance> insList = discoveryClient.getInstances("eureka-server");
-	        for (ServiceInstance si:insList) {
-	            return si.getHost() +" ," + si.getServiceId() +"," +si.getPort() +"," +si.getUri() +"," +si.getMetadata();
-	        }
-	        return "hello";
-	    }
 	
 	@RequestMapping(value = "/hi")
 	public String hi(@RequestParam(value = "v", required = false) String version, User user){

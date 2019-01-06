@@ -1,7 +1,5 @@
 package com.mxz.eurekac.provider.service;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import org.springframework.stereotype.Component;
 
 import feign.hystrix.FallbackFactory;
