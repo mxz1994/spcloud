@@ -1,0 +1,9 @@
+/.settings/
+.project
+/.gitignore
+.idea/
+.mvn/
+target/
+.settings/
+.classpath
+/target/*

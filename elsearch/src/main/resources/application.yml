@@ -1,0 +1,37 @@
+elUrl:
+  http://203.2.161.184:9200
+  
+server:
+  port: 4456
+  
+spring:
+  data:
+    elasticsearch:
+      cluster-nodes: 203.2.161.184:9300
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+        
+        
+        
+        
+        
+        
+  cache:
+    type: redis
+     #SIMPLE  是基于ConcurrentHashMap  generic用户自定义缓存
+     
+  redis:
+    host: 203.2.161.184
+    port: 6379
+    password:     
+  #可配置      
+  devtools:
+    restart:
+      enabled: true #如果不想使用重启功能，可以使用spring.devtools.restart.enabled属性来禁用它
+      additional-paths:
+      - src/main/java
+        
+    #与LiveReload一起使用时，自动重启的效果非常好  
+    livereload:
+      enabled: true
