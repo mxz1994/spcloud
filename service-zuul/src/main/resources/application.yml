@@ -1,5 +1,5 @@
 server:
-  port: 8769
+  port: 80
   
 spring:
   application:
@@ -22,8 +22,13 @@ zuul:
   routes:
     api-a:
       path: /api-a/**
-      serviceId: service1
+      serviceId: s1
     api-b:
       path: /api-b/**
-      serviceId: service2
+      serviceId: s2
     #service2: /api-b/**也可这样配
+
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+

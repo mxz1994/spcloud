@@ -2,7 +2,7 @@ spring:
   cloud:
     config:
       label: master
-      ##uri: http://localhost:7777/  可以不写通过注册到eureka 上访问
+      uri: http://localhost:7777/  #目前发现url配置是没用的，他会主动访问8888  eureka 上的服务
       profile: test
       discovery:
         enabled: true

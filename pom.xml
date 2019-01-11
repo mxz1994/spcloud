@@ -29,6 +29,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 		<!-- 热部署，项目修改代码，不需要重启服务器，开发的时候推荐使用，部署到生产可以去掉 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

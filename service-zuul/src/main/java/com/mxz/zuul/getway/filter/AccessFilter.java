@@ -36,10 +36,10 @@ public class AccessFilter extends ZuulFilter{
 		HttpServletRequest request = ctx.getRequest();
 		HttpServletResponse response = ctx.getResponse();
 		
-		ctx.addZuulRequestHeader(name, value);
+	//	ctx.addZuulRequestHeader(name, value);
 		boolean filterPass = false;
 		try {
-			filterPass = acc
+		//	filterPass = acc
 		} catch (Exception e) {
 			
 		}

@@ -5,6 +5,7 @@ spring:
   application:
     name: s2
 
+#  公共配置
 eureka:
   client:
     service-url:

@@ -1,0 +1,59 @@
+yum update -y
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+yum -y install docker
+systemctl start docker
+
+
+
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://toubg30r.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+开机启动
+sudo systemctl start docker
+sudo systemctl enable docker
+
+
+docker pull hub.c.163.com/library/mysql:5.7
+docker tag hub.c.163.com/library/mysql:5.7 mysql:5.7
+sudo mkdir /home/mysql/data
+sudo mkdir /home/mysql/conf.d
+docker run --name mysql5.7 -p 3306:3306 -v /home/mysql/data:/var/lib/mysql -v /home/mysql/conf.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+
+
+
+docker pull redis
+
+
+
+systemctl disable firewalld.service
+systemctl stop firewalld.service
+
+yum install -y etcd kubernetes
+
+nano  /etc/sysconfig/docker              OPTIONS='--selinux-enabled=false --insecure-registry gcr.io'
+nano /etc/kubernetes/apiserver     KUBE_ADMISSION_CONTROL选项中去掉ServiceAccount选项
+切换docker hub镜像源
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://dbe35452.m.daocloud.io
+
+
+systemctl start etcd
+systemctl start docker
+
+
+systemctl start kube-apiserver.service
+systemctl start kube-controller-manager.service
+systemctl start kube-scheduler.service
+systemctl start kubelet.service
+systemctl start kube-proxy.service
+
+
+yum install *rhsm*
+
+wget http://mirror.centos.org/centos/7/os/x86_64/Packages/python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm
+
+rpm2cpio python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm | cpio -iv --to-stdout ./etc/rhsm/ca/redhat-uep.pem | tee /etc/rhsm/ca/redhat-uep.pem
