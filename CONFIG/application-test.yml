@@ -1,14 +1,3 @@
 foo:
-  423423423
+  tt
 
-
-#  公共配置
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/  #注册的EurekaServer地址
-      #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka  注册到其他上面
-  instance:
-    metadata-map:
-      zone: ${COMPUTERNAME}#匹配调用
-    prefer-ip-address: true
