@@ -1,3 +1,9 @@
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install.sh && sh install.sh
+
+hostnamectl set-hostname node1
+
+passwd root
+
 yum update -y
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 yum -y install docker
@@ -35,8 +41,8 @@ systemctl stop firewalld.service
 
 yum install -y etcd kubernetes
 
-nano  /etc/sysconfig/docker              OPTIONS='--selinux-enabled=false --insecure-registry gcr.io'
-nano /etc/kubernetes/apiserver     KUBE_ADMISSION_CONTROL选项中去掉ServiceAccount选项
+vim  /etc/sysconfig/docker              OPTIONS='--selinux-enabled=false --insecure-registry gcr.io'
+vim /etc/kubernetes/apiserver     KUBE_ADMISSION_CONTROL选项中去掉ServiceAccount选项
 切换docker hub镜像源
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://dbe35452.m.daocloud.io
 
@@ -57,3 +63,39 @@ yum install *rhsm*
 wget http://mirror.centos.org/centos/7/os/x86_64/Packages/python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm
 
 rpm2cpio python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm | cpio -iv --to-stdout ./etc/rhsm/ca/redhat-uep.pem | tee /etc/rhsm/ca/redhat-uep.pem
+
+
+kubectl create -f nginx.yaml
+
+kubectl expose deployment/my-nginx --type="NodePort" --port 80
+
+
+
+
+
+注册阿里云
+sudo docker login --username=836323493@qq.com registry.cn-hangzhou.aliyuncs.com
+
+拉镜像
+sudo docker pull registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:[镜像版本号]
+
+docker build -t 仓库名称/镜像名称
+https://cr.console.aliyun.com/repository/cn-shenzhen/mxzdocker/mxz/detail
+$ sudo docker login --username=836323493@qq.com registry.cn-shenzhen.aliyuncs.com
+$ sudo docker tag [ImageId] registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:[镜像版本号]
+$docker push registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:[镜像版本号]
+
+
+
+
+
+docker run --name eureka  -d -p 8761:8761 --restart unless-stopped mxz/eurekaserver
+
+
+docker build -f Dockerfile ./ -t mxz/configserver
+
+docker run -i -t --name configServer1 --link eureka:eureka -d -p 7777:7777 --restart unless-stopped mxz/configserver /bin/bash
+
+docker run --detach --name wx-nginx -p 8081:80 -d docker.io/nginx -v /home/conf/nginx.conf:/etc/nginx/nginx.conf
+
+sudo docker container prunedocker run --name wx-nginx -p 8081:80 -v /home/mysql/data:/var/lib/mysql -v /home/mysql/conf.d:/etc/nginx/nginx.cnf -d docker.io/nginx
