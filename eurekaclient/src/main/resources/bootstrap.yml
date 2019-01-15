@@ -2,7 +2,7 @@ spring:
   cloud:
     config:
       label: master
-      ##uri: http://localhost:7777/  可以不写通过注册到eureka 上访问
+      uri: http://203.2.161.184:7777/  可以不写通过注册到eureka 上访问
       profile: test
       discovery:
         enabled: true

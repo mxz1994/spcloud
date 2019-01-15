@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
 * <p>Title: AccessFilter.java</p>  
@@ -14,7 +15,6 @@ import com.netflix.zuul.exception.ZuulException;
 * @date 2018年11月26日  
 */
 public class AccessFilter extends ZuulFilter{
-
 	@Override
 	public boolean shouldFilter() {
 		return true;
@@ -39,7 +39,7 @@ public class AccessFilter extends ZuulFilter{
 	//	ctx.addZuulRequestHeader(name, value);
 		boolean filterPass = false;
 		try {
-		//	filterPass = acc
+			//	filterPass = acc
 		} catch (Exception e) {
 			
 		}

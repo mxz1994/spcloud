@@ -30,5 +30,5 @@ eureka:
     prefer-ip-address: true
 info:
   author: XXX
-  build-version: 0.0.1-SNAPSHOT
+  build-version: $project.version$
 #如果不想使用重启功能，可以使用spring.devtools.restart.enabled属性来禁用它
