@@ -81,7 +81,7 @@ sudo docker pull registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:[镜像版本�
 
 docker build -t 仓库名称/镜像名称
 https://cr.console.aliyun.com/repository/cn-shenzhen/mxzdocker/mxz/detail
-$ sudo docker login --username=836323493@qq.com registry.cn-shenzhen.aliyuncs.com
+$ docker login --username=836323493@qq.com registry.cn-shenzhen.aliyuncs.com
 $ sudo docker tag [ImageId] registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:[镜像版本号]
 $docker push registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:[镜像版本号]
 
@@ -98,4 +98,9 @@ docker run -i -t --name configServer1 --link eureka:eureka -d -p 7777:7777 --res
 
 docker run --detach --name wx-nginx -p 8081:80 -d docker.io/nginx -v /home/conf/nginx.conf:/etc/nginx/nginx.conf
 
-sudo docker container prunedocker run --name wx-nginx -p 8081:80 -v /home/mysql/data:/var/lib/mysql -v /home/mysql/conf.d:/etc/nginx/nginx.cnf -d docker.io/nginx
+docker pull nginx
+
+docker run --name wx-nginx -p 8081:80 --link eureka:eureka -v /home/data/nginx/conf.d:/etc/nginx/conf.d -v /home/data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /home/data/nginx/html:/usr/share/nginx/html -v /home/data/nginx/log:/var/log/nginx -d docker.io/nginx
+
+ev-qinsilk'
+kubectl set image deployment.v1.apps/22 22=registry.cn-shenZhen.aliyuncs.com/mxz/eureka: --record=true

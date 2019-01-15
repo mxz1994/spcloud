@@ -85,7 +85,7 @@
 				<!-- <executions> <execution> <id>build-image</id> <phase>package</phase> 
 					<goals> <goal>build</goal> </goals> </execution> </executions> -->
 				<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<imageName>${project.artifactId}/${project.version}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>

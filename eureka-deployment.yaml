@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  name: eureka
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+    spec:
+      containers:
+          image: registry.cn-shenzhen.aliyuncs.com/mxzdocker/mxz:v1
+          name: eureka
+
+          ports:
+            - containerPort: 8761
+              protocol: TCP
+          resources: {}
+status: {}
