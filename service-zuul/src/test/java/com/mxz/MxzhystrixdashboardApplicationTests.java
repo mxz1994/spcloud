@@ -11,6 +11,7 @@ public class MxzhystrixdashboardApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

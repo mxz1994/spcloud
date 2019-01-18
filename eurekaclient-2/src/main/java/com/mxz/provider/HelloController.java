@@ -1,24 +1,22 @@
 package com.mxz.provider;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class HelloController {
 
 	@Autowired
-	private DiscoveryClient discoveryClient;    
+	private DiscoveryClient discoveryClient;
 
 	@ResponseBody
 	@GetMapping("/provider/discovery")
